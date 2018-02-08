@@ -1,3 +1,10 @@
+var backGImg;
+var spereImg; 
+var heartImg;
+var hpBarImg;
+var scoreBImg;
+var knight2Img;
+
 var player = {
   px :280,
   py :250,
@@ -79,7 +86,7 @@ class deathCube  {
      
      if(hp > 0){
      fill(1,1,1);
-     image(spere,this.px,this.py,30,30);
+     image(spereImg,this.px,this.py,30,30);
      //rect(this.px,this.py,20,20);
      console.log(deathins.length);
     
@@ -110,7 +117,7 @@ var start3 = true;
 var deathins = [];
 var h = [];
  
-class Haert  {
+/*class Haert  {
   constructor(y,x){
     this.x = 280;  //x;
     this.y = y;   //250;
@@ -119,7 +126,7 @@ class Haert  {
   }
   drawSelf(){
     if(this.v === true){
-      image(loadImage("heart.png"),this.x,this.y,20,20);
+      image(heartImg, this.x,this.y,20,20);
       if(this.y === player.py){
         //hp -= 2;
         hp += 20;
@@ -127,7 +134,7 @@ class Haert  {
       }
     }
   }
-}
+}*/
 
 var space = false;
 var hp    = 50;
@@ -146,7 +153,7 @@ var hp    = 50;
   }
   if(keyCode===UP_ARROW){
     up = true;
-    player.img = loadImage("https://d14nx13ylsx7x8.cloudfront.net/repo_assets/assets/000/011/119/original/knigth2.png");
+    player.img = knight2Img
     start2 = true;
   }else{
     up = false;
@@ -157,7 +164,7 @@ var hp    = 50;
   }
   if(keyCode===DOWN_ARROW){
     down = true;
-    player.img = loadImage("https://d14nx13ylsx7x8.cloudfront.net/repo_assets/assets/000/011/118/original/knigth1.png");
+    player.img = knight1Img
      start2 = true;
   }else{
     down = false;
@@ -191,12 +198,6 @@ var hp    = 50;
 
 var start2 = false;
 
-var backG;
-var spere; 
-var heart;
-var hpBar;
-var scoreB;
-
 var skin1; 
 var skin2;
 var skin3;
@@ -208,22 +209,20 @@ function setup(){
   createCanvas(500,520);
   player.img = loadImage("https://d14nx13ylsx7x8.cloudfront.net/repo_assets/assets/000/011/119/original/knigth2.png");
 
-  // = loadImage("skin1.png");
+ //  = loadImage("skin1.png");
  // skin2 = loadImage("skin2.png");
   
-  scoreB = loadImage("https://d14nx13ylsx7x8.cloudfront.net/repo_assets/assets/000/011/121/original/scoreB.png");
-  hpBar = loadImage("https://d14nx13ylsx7x8.cloudfront.net/repo_assets/assets/000/011/125/original/bar.png");
-  backG = loadImage("https://d14nx13ylsx7x8.cloudfront.net/repo_assets/assets/000/011/130/original/backG2.png");
-  heart = loadImage("https://d14nx13ylsx7x8.cloudfront.net/repo_assets/assets/000/011/126/original/heart.png");
-  spere = loadImage("https://d14nx13ylsx7x8.cloudfront.net/repo_assets/assets/000/011/127/original/sper.png");
-  if(up === true && start === true){
-    for (var sp1 = 0; sp1 < 9; sp1++){
-      deathins.push(new deathCube(100,Math.random()*500));
-     console.log("spere");
-    start = false;
-    }
-  }
+  scoreBImg = loadImage("https://d14nx13ylsx7x8.cloudfront.net/repo_assets/assets/000/011/121/original/scoreB.png");
+  hpBarImg = loadImage("https://i.imgur.com/DLDEtmA.png");
+  backGImg = loadImage("https://d14nx13ylsx7x8.cloudfront.net/repo_assets/assets/000/011/130/original/backG2.png");
+  heartImg = loadImage("https://d14nx13ylsx7x8.cloudfront.net/repo_assets/assets/000/011/126/original/heart.png");
+  spereImg = loadImage("https://d14nx13ylsx7x8.cloudfront.net/repo_assets/assets/000/011/127/original/sper.png");
+  knight2Img = loadImage("https://d14nx13ylsx7x8.cloudfront.net/repo_assets/assets/000/011/119/original/knigth2.png");
+  knight1Img = loadImage("https://d14nx13ylsx7x8.cloudfront.net/repo_assets/assets/000/011/118/original/knigth1.png");
+  console.log(up +"and"+start);
+ 
 };
+
 var start = true;
 var map1 = {
 
@@ -251,11 +250,20 @@ var hScore = 0;
 
 
 function draw(){
+  image(hpBarImg,0,0,500,50)
   
-  
-  if(h.length < 10 ){
-    h.push(new Haert(Math.random()*500));
+ if(up === true && start === true){
+    for (var sp1 = 0; sp1 < 9; sp1++){
+      deathins.push(new deathCube(100,Math.random()*500));
+     console.log("spere");
+    start = false;
+    }
   }
+  
+
+  /*if(h.length < 10 ){
+    h.push(new Haert(Math.random()*500));
+  }*/
   
   
 if(score > hScore){
@@ -282,8 +290,6 @@ if(score > hScore){
  }
   
   
-  
-  setup();
   if(hp < 0 ){
     hp=0;
   }
@@ -303,8 +309,8 @@ if(score > hScore){
   fill(300,300,300);
   //rect(-1,-1,510,525);
   //image(map.img,map.px,map.py,map.pw,map.ph)
-  image(backG,-1,-1,510,520);
-  keyPressed();
+  image(backGImg,-1,-1,510,520);
+  //keyPressed();
   if(hp>0 && start ===false){
  score += 0.05}
   if(up===true){
@@ -341,7 +347,7 @@ if(score > hScore){
     start3 = true;
     start2 = false;
     //rect(-1,-1,510,510) 
-    image(scoreB,-1000,170,4000,140);
+    image(scoreBImg,-1000,170,4000,140);
     //image(spere,1,70,400,400)
     textSize(64);
     speed = 0;
@@ -377,14 +383,7 @@ if(score > hScore){
  
   
   
-//for(heart of h){
-//    heart.drawSelf();
-//    console.log(heart.drawSelf)
- // }
-  // for(var i = 0; i < h.length; i++){
-  //   image(heart, h[i].x, h[i].y, 10, 10)
-  //   console.log(h[i])
-  // }
+
   
  
  
@@ -394,13 +393,13 @@ if(score > hScore){
     rect(1,1,500,20);
     fill (300,1,1);
     rect(1,1,hp*10,20);
-    image(hpBar,1,1,500,21);
+    image(hpBarImg,1,1,500,21);
    fill(1,1,1);
    textSize(32);
-   image(scoreB,350,10,155,40);
+   image(scoreBImg,350,10,155,40);
    text("score "+round(score),scorex,40);
   }
 
 
 
-};
+ };
